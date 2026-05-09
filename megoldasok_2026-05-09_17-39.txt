@@ -1,0 +1,40 @@
+MOODLE MENTÉS - 2026. 05. 09. 17:39:44
+------------------------------------------
+
+1. KÉRDÉS: Hány elektronja van a beriliumnak?
+📷 KÉP: q1_img1.png
+✅ HELYES VÁLASZ: 4.
+------------------------------------------
+2. KÉRDÉS: Hány elektronja van a nitrogénnek?
+✅ HELYES VÁLASZ: 7.
+------------------------------------------
+3. KÉRDÉS: Hány elektronja van a héliumnak?
+✅ HELYES VÁLASZ: 2.
+------------------------------------------
+4. KÉRDÉS: Hány elektronja van a szénnek?
+✅ HELYES VÁLASZ: 6.
+------------------------------------------
+5. KÉRDÉS: Melyik igaz egy valós vezetékre?
+✅ HELYES VÁLASZ: Viszonylag kis ellenállással rendelkezik.
+------------------------------------------
+6. KÉRDÉS: A labor órán használt multiméter (vagy általában a multiméterek esetében) a sima feszültség méréshez hány vezetéket kell használni?
+✅ HELYES VÁLASZ: 2.
+------------------------------------------
+7. KÉRDÉS: Mi jellemző az ideális  áramgenerátorra
+✅ HELYES VÁLASZ: Terheléstől függetlenül állandó kimeneti árama van.
+------------------------------------------
+8. KÉRDÉS: Abban az esetben azonban, ha  
+1 üres 8 kérdés
+ közelében egy  
+2 üres 8 kérdés
+ viszünk, vonzást fogunk megfigyelni. Ezek a kísérleti eredmények arra utalnak, hogy a megdörzsölt üvegrúd elektromos hatásnak, illetve elektromos töltöttségének  
+3 üres 8 kérdés
+ a megdörzsölt ebonitrúd és a megdörzsölt üvegrúd esetében. A különböző dörzsölt testeket egymás után közelítünk a fent leírt módon egymáshoz, akkor megállapíthatjuk, hogy a testeket a dörzsölés révén  
+4 üres 8 kérdés
+ vagy negatív elektromos töltéssel láthatjuk el. A bőrrel dörzsölt üveg töltését nevezzük  
+5 üres 8 kérdés
+ , és a gyapjúval dörzsölt ebonitrúd, vagy borostyánkő töltését pedig  
+6 üres 8 kérdés
+ . A fenti kísérletek eredményét úgy is megfogalmazhatjuk, hogy az egynemű töltések taszítják, a külön neműek pedig vonzzák egymást. Ez a jelenség tehát már az ókorban ismeretes volt.
+✅ HELYES VÁLASZ: Abban az esetben azonban, ha [bőrrel dörzsölt és fonálra felfüggesztett üveg rúd] közelében egy [gyapjúval dörzsölt ebonit rudat] viszünk, vonzást fogunk megfigyelni. Ezek a kísérleti eredmények arra utalnak, hogy a megdörzsölt üvegrúd elektromos hatásnak, illetve elektromos töltöttségének [különböznie kell] a megdörzsölt ebonitrúd és a megdörzsölt üvegrúd esetében. A különböző dörzsölt testeket egymás után közelítünk a fent leírt módon egymáshoz, akkor megállapíthatjuk, hogy a testeket a dörzsölés révén [pozitív] vagy negatív elektromos töltéssel láthatjuk el. A bőrrel dörzsölt üveg töltését nevezzük [pozitívnak], és a gyapjúval dörzsölt ebonitrúd, vagy borostyánkő töltését pedig [negatívnak]. A fenti kísérletek eredményét úgy is megfogalmazhatjuk, hogy az egynemű töltések taszítják, a külön neműek pedig vonzzák egymást. Ez a jelenség tehát már az ókorban ismeretes volt.
+------------------------------------------

@@ -1,0 +1,82 @@
+MOODLE MENTÉS - 2026. 05. 09. 17:22:28
+------------------------------------------
+
+1. KÉRDÉS: 53 Milyen hibák lehetnek az anyagban?
+📷 KÉP: q1_img1.png
+✅ HELYES VÁLASZ: pont.
+------------------------------------------
+2. KÉRDÉS: 22 A mértékegységek leírásakor
+✅ HELYES VÁLASZ: a tűréshatárt elé tesszük zárójelbe.
+------------------------------------------
+3. KÉRDÉS: 27 Ideális áramgenerátor
+✅ HELYES VÁLASZ: A helyes válaszok: Belső ellenállás végtelen, Végtelen teljesítmény leadására képes
+------------------------------------------
+4. KÉRDÉS: 43 A töltések között fellépő erő függ
+✅ HELYES VÁLASZ: a távolságtól és a töltés nagyságától.
+------------------------------------------
+5. KÉRDÉS: 12 A mérési módszer része
+✅ HELYES VÁLASZ: A mérő tevékenysége.
+------------------------------------------
+6. KÉRDÉS: 35 Az ólom akkumlátor töltésekor ólom-oxid képződik
+✅ HELYES VÁLASZ: igaz.
+------------------------------------------
+7. KÉRDÉS: 37 A váltakozó áram mágneses hatása szempontjából az áram változásának megfelelően változó, lüktető.
+✅ HELYES VÁLASZ: igaz.
+------------------------------------------
+8. KÉRDÉS: Mit látunk a következő ábrán?
+📷 KÉP: q8_img1.png
+✅ HELYES VÁLASZ: aluláteresztő szűrő
+.
+------------------------------------------
+9. KÉRDÉS: 24 ferromágneses anyag
+✅ HELYES VÁLASZ: vas.
+------------------------------------------
+10. KÉRDÉS: 19 A diszkrét rendszer
+✅ HELYES VÁLASZ: valamenni.
+------------------------------------------
+11. KÉRDÉS: 49 A töltések az anyagban
+✅ HELYES VÁLASZ: nem tünnek el és nem keletkeznek.
+------------------------------------------
+12. KÉRDÉS: 32 Milyen anyagok találkozásakor tapasztalunk elektromos jelenséget?
+✅ HELYES VÁLASZ: ebonit és műszál.
+------------------------------------------
+13. KÉRDÉS: Az átvitel a kimenet és a bemenet hányadosa
+✅ HELYES VÁLASZ: A helyes válasz az 'Igaz'.
+------------------------------------------
+14. KÉRDÉS: Ez egy egyenáramú kapcsolás
+📷 KÉP: q14_img1.png
+✅ HELYES VÁLASZ: A helyes válasz a 'Hamis'.
+------------------------------------------
+15. KÉRDÉS: 55 A töltés erőtere lehet
+✅ HELYES VÁLASZ: pozitív.
+------------------------------------------
+16. KÉRDÉS: 50 Nyugvó töltés erőtere
+✅ HELYES VÁLASZ: elektrosztatikus erőtér.
+------------------------------------------
+17. KÉRDÉS: 9 A mágneses indukció
+✅ HELYES VÁLASZ: A mágneses térerősség.
+------------------------------------------
+18. KÉRDÉS: 26 Ideális áramgenerátor
+✅ HELYES VÁLASZ: mindkettő.
+------------------------------------------
+19. KÉRDÉS: 48 A töltések között fellépő erő
+✅ HELYES VÁLASZ: egyenesen arányos a töltések nagyságával.
+------------------------------------------
+20. KÉRDÉS: 15 Analóg rendszer:
+✅ HELYES VÁLASZ: Valamennyi.
+------------------------------------------
+21. KÉRDÉS: 35 A váltakozó áram az elektrolitokban vegyi átalakulást okoz
+✅ HELYES VÁLASZ: hamis.
+------------------------------------------
+22. KÉRDÉS: 4 A föld mágneses tere
+✅ HELYES VÁLASZ: a litoszféra mozgásának köszönhető.
+------------------------------------------
+23. KÉRDÉS: A kondenzátor árama ω függvényében csökken, fázisa 60°-ot siet.
+✅ HELYES VÁLASZ: A helyes válasz a 'Hamis'.
+------------------------------------------
+24. KÉRDÉS: 42 Melyik elsődleges kötés?
+✅ HELYES VÁLASZ: fémes.
+------------------------------------------
+25. KÉRDÉS: 25 A potenciál és az áramerősség között
+✅ HELYES VÁLASZ: egyenes arányosság áll fenn.
+------------------------------------------

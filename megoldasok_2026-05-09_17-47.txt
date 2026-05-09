@@ -1,0 +1,60 @@
+MOODLE MENTÉS - 2026. 05. 09. 17:47:24
+------------------------------------------
+
+1. KÉRDÉS: Hány elektronja van a klórnak?
+📷 KÉP: q1_img1.png
+✅ HELYES VÁLASZ: 17.
+------------------------------------------
+2. KÉRDÉS: Hány elektronja van a hidrogénnek?
+✅ HELYES VÁLASZ: 1.
+------------------------------------------
+3. KÉRDÉS: Határozza meg, hogy az 70 rendszámú elemnek hány protonja van!
+
+
+protonszám
+
+
+Válasz
+Az egyik lehetséges helyes válasz: 70
+✅ HELYES VÁLASZ: Nem található
+------------------------------------------
+4. KÉRDÉS: Hány elektronja van a fluornak?
+✅ HELYES VÁLASZ: 9.
+------------------------------------------
+5. KÉRDÉS: A labor órán használt multiméter (vagy általában a multiméterek esetében) a váltakozó jel mérés üzemmódban miben adja meg a feszültséget a mérőműszer?
+✅ HELYES VÁLASZ: Effektív (Ueff) feszültség érték.
+------------------------------------------
+6. KÉRDÉS: Melyik passzív alkatrész
+✅ HELYES VÁLASZ: ellenállás.
+------------------------------------------
+7. KÉRDÉS: Egy voltmérő ellenállása 6 kΩ, mekkora áram folyik rajta keresztül, ha a mutatója 4 V értéket jelez?
+
+mA-ben adja meg, tizedespont használható!
+
+Válasz
+Az egyik lehetséges helyes válasz: 0.66666666666667
+✅ HELYES VÁLASZ: Nem található
+------------------------------------------
+8. KÉRDÉS: Kirchhoff I. törvénye, más néven a  
+1 üres 8 kérdés
+ törvény azt mondja ki, hogy  
+2 üres 8 kérdés
+  
+3 üres 8 kérdés
+ egyenlő  
+4 üres 8 kérdés
+ .
+
+Kirchhoff II. törvénye, más néven a  
+5 üres 8 kérdés
+ törvény azt mondja ki, hogy  
+6 üres 8 kérdés
+  
+7 üres 8 kérdés
+ egyenlő  
+8 üres 8 kérdés
+ .
+✅ HELYES VÁLASZ: Kirchhoff I. törvénye, más néven a [csomóponti] törvény azt mondja ki, hogy [a csomópontba] [befolyó áramok összege] egyenlő [a kifolyó áramok összegével].
+
+Kirchhoff II. törvénye, más néven a [hurok] törvény azt mondja ki, hogy [egy zárt hurokban] [a feszültségek előjelhelyes összege] egyenlő [nullával].
+------------------------------------------

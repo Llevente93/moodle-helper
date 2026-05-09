@@ -1,0 +1,84 @@
+MOODLE MENTÉS - 2026. 05. 09. 16:17:55
+------------------------------------------
+
+1. KÉRDÉS: 45 A töltések között fellépő erő kiszámításához szükség van
+📷 KÉP: q1_img1.png
+✅ HELYES VÁLASZ: a töltés nagyságára.
+------------------------------------------
+2. KÉRDÉS: 17 Az ekvipotenciális tér
+✅ HELYES VÁLASZ: minden pontján ugyanazt a potenvciált mérhetjük.
+------------------------------------------
+3. KÉRDÉS: 55 Ki foglalkozott sokat az anyag szerkezetével?
+✅ HELYES VÁLASZ: Bravais.
+------------------------------------------
+4. KÉRDÉS: 34 Hogyan számíthatjuk ki az atomtömeget?
+✅ HELYES VÁLASZ: Protonok+neutronok száma.
+------------------------------------------
+5. KÉRDÉS: 59 Mit okoz az anyagban a rácshiba?
+✅ HELYES VÁLASZ: módosítja a tulajdonságait.
+------------------------------------------
+6. KÉRDÉS: Mit látunk a következő ábrán?
+📷 KÉP: q6_img1.png
+✅ HELYES VÁLASZ: sáváteresztő szűrő 
+.
+------------------------------------------
+7. KÉRDÉS: 49 Milyen kötés van a vörösrézben?
+✅ HELYES VÁLASZ: fémes.
+------------------------------------------
+8. KÉRDÉS: 52 A töltés folytatása a térben
+✅ HELYES VÁLASZ: erőtér.
+------------------------------------------
+9. KÉRDÉS: 34 A különböző töltések
+✅ HELYES VÁLASZ: vonzzák egymást.
+------------------------------------------
+10. KÉRDÉS: A kondenzátor árama f függvényében csökken, fázisa 90°-ot siet.
+✅ HELYES VÁLASZ: A helyes válasz a 'Hamis'.
+------------------------------------------
+11. KÉRDÉS: 43 A volta elem galván elem
+✅ HELYES VÁLASZ: igaz.
+------------------------------------------
+12. KÉRDÉS: 23 A tekercs belsejében a mágneses indukció fordítottan arányos a
+✅ HELYES VÁLASZ: a tekercs hosszával.
+------------------------------------------
+13. KÉRDÉS: 51 Milyen hibák lehetnek az anyagban?
+✅ HELYES VÁLASZ: vonal.
+------------------------------------------
+14. KÉRDÉS: 28 A mérés
+✅ HELYES VÁLASZ: értékelés.
+------------------------------------------
+15. KÉRDÉS: 29 Az ezüst elektróda
+✅ HELYES VÁLASZ: mindkettő.
+------------------------------------------
+16. KÉRDÉS: 17 Mérési eredmény
+✅ HELYES VÁLASZ: egy vagy több mért értékből számítással meghatározott mennyiség.
+------------------------------------------
+17. KÉRDÉS: 33 Milyen töltésű az elektron?
+✅ HELYES VÁLASZ: negatív.
+------------------------------------------
+18. KÉRDÉS: 37 Feszültség mérését
+✅ HELYES VÁLASZ: két hálózati pont között lehet elvégezni.
+------------------------------------------
+19. KÉRDÉS: 10 Mi az elektronika?
+✅ HELYES VÁLASZ: Az elektromos áram tulajdonságait leíró tudomány.
+------------------------------------------
+20. KÉRDÉS: 31 Milyen anyagok találkozásánál találkozhatunk az elektromosság jelenségével?
+✅ HELYES VÁLASZ: üveg és bőr.
+------------------------------------------
+21. KÉRDÉS: 19 A mérés mint folyamat a
+✅ HELYES VÁLASZ: tudományos tevékenység része, a fizikai világ megismerését és megértését segítő eljárás.
+------------------------------------------
+22. KÉRDÉS: Párosítsa össze a rajzokat a kifejezésekkel!
+📷 KÉP: q22_img1.png
+📷 KÉP: q22_img3.png
+📷 KÉP: q22_img6.png
+✅ HELYES VÁLASZ: → feszültségosztó,  → áramosztó,  → párhuzamos ellenállás
+------------------------------------------
+23. KÉRDÉS: 14 Mérési hiba
+✅ HELYES VÁLASZ: a mérőeszköz pontatlanságából, a leolvasás pontatlanságából adódó hiba.
+------------------------------------------
+24. KÉRDÉS: 23 A diffúzió
+✅ HELYES VÁLASZ: keveréssel gyorsíthatő.
+------------------------------------------
+25. KÉRDÉS: 30 Homogén mágneses indukciójú térben egyenletesen forgó vezetőben az indukált feszültség, illetve az áramerősség az idő, a szögelfordulás szinuszával arányos.
+✅ HELYES VÁLASZ: igaz.
+------------------------------------------

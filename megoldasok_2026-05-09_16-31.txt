@@ -1,0 +1,84 @@
+MOODLE MENTÉS - 2026. 05. 09. 16:31:10
+------------------------------------------
+
+1. KÉRDÉS: 12 A mágneses indukció SI mértékegysége a tesla.
+📷 KÉP: q1_img1.png
+✅ HELYES VÁLASZ: igaz.
+------------------------------------------
+2. KÉRDÉS: Mit lát az alábbi ábrán?
+📷 KÉP: q2_img1.png
+✅ HELYES VÁLASZ: Az impedancián átfolyó áram és rajta mért változó feszültség azonos fázisban vannak.
+------------------------------------------
+3. KÉRDÉS: 36 Az elektromos hálózatok munkája
+✅ HELYES VÁLASZ: egyik sem.
+------------------------------------------
+4. KÉRDÉS: 27 A vezető ellenállása függ
+✅ HELYES VÁLASZ: mindkettő.
+------------------------------------------
+5. KÉRDÉS: 36 Az ólom akkumlátor kisütésekor ólom-oxid képződik
+✅ HELYES VÁLASZ: hamis.
+------------------------------------------
+6. KÉRDÉS: 8 A Föld északi pólusa irányába mutat
+✅ HELYES VÁLASZ: A mágnestű déli pólusa.
+------------------------------------------
+7. KÉRDÉS: 21 Hol született Mengyelejev?
+✅ HELYES VÁLASZ: Tobolszk.
+------------------------------------------
+8. KÉRDÉS: 29 ha a Fourier transzformáció eredményét frekvencia-tartományban ábrázoljuk, akkor kapjuk a jel színuszát.
+✅ HELYES VÁLASZ: hamis.
+------------------------------------------
+9. KÉRDÉS: 22 Mi a periódusos rendszer?
+✅ HELYES VÁLASZ: Az anyagi elemek rendezett sora, mert a kémiai elemek periódusos rendszere (más néven: Mengyelejev-táblázat) a kémiai elemek egy táblázatos megjelenítése, amelyben az elemek rendszámuk (vagyis protonszámuk), elektronszerkezetük, és ismétlődő kémiai tulajdonságaik alapján vannak elrendezve.
+------------------------------------------
+10. KÉRDÉS: 11 A jel
+✅ HELYES VÁLASZ: információ megjelenítésére továbbítására vagy tárolására alkalmas..
+------------------------------------------
+11. KÉRDÉS: 58 Az erőtér jellemző mennyisége
+✅ HELYES VÁLASZ: a fluxus.
+------------------------------------------
+12. KÉRDÉS: Mi az induktivitás?
+✅ HELYES VÁLASZ: mágneses energiát tároló eszköz
+.
+------------------------------------------
+13. KÉRDÉS: 40 Az elektromos rendszer hőhatása függ
+✅ HELYES VÁLASZ: mindegyik.
+------------------------------------------
+14. KÉRDÉS: Mi az induktivitás?
+✅ HELYES VÁLASZ: tekercs
+.
+------------------------------------------
+15. KÉRDÉS: 28 Ideális feszültséggenerátor
+✅ HELYES VÁLASZ: Végtelen teljesítmény leadására képes.
+------------------------------------------
+16. KÉRDÉS: 28 Mi köti össze a periódusos rendszer csoportjait?
+✅ HELYES VÁLASZ: hasonló tulajdonságok.
+------------------------------------------
+17. KÉRDÉS: 10 A vezeték anyga
+✅ HELYES VÁLASZ: réz és alumínium.
+------------------------------------------
+18. KÉRDÉS: 13 passzív alkatrész
+✅ HELYES VÁLASZ: mindettő.
+------------------------------------------
+19. KÉRDÉS: 6 A mágnes polusai közül
+✅ HELYES VÁLASZ: az északi a pozitív.
+------------------------------------------
+20. KÉRDÉS: 44 Két töltés között fellépő erőt
+✅ HELYES VÁLASZ: a Coulomb törvény írja le.
+------------------------------------------
+21. KÉRDÉS: 25 A szám és a mértékegység között
+✅ HELYES VÁLASZ: kis helyet kell hagyni.
+------------------------------------------
+22. KÉRDÉS: 44 Az elektromos rendszer hőhatása függ
+✅ HELYES VÁLASZ: mindkettő.
+------------------------------------------
+23. KÉRDÉS: 18 A tapasztalat szerint az elektromos töltésű test és a hozzá képest nyugvó mágnes között mágneses jellegű kölcsönhatást nem észlelünk
+✅ HELYES VÁLASZ: igaz.
+------------------------------------------
+24. KÉRDÉS: 36 Állandó permanens mágnest a két póluson keresztül haladó, egyenesre merőleges irányban felszeletelve, a részek két pólusú mágnesek maradnak.
+✅ HELYES VÁLASZ: igaz.
+------------------------------------------
+25. KÉRDÉS: Mit látunk a következő ábrán?
+📷 KÉP: q25_img1.png
+✅ HELYES VÁLASZ: aluláteresztő szűrő
+.
+------------------------------------------
