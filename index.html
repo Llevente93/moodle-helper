@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Kártyák</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<!-- A data.js tartalmazza az összes kártyát és képet (generate_data.py generálja) -->
+<script src="data.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{height:100%;height:100dvh}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:#0e0e0e;
+  color:#f0ece4;
+  height:100%;
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+:root{
+  --bg:#0e0e0e;
+  --card:#181818;
+  --card2:#212121;
+  --card3:#2a2a2a;
+  --border:rgba(255,255,255,0.08);
+  --border2:rgba(255,255,255,0.14);
+  --accent:#c8a84b;
+  --accent2:#e0c070;
+  --accent-dim:rgba(200,168,75,0.12);
+  --accent-glow:rgba(200,168,75,0.2);
+  --danger:#e05555;
+  --danger-dim:rgba(224,85,85,0.12);
+  --green:#52b36e;
+  --green-dim:rgba(82,179,110,0.12);
+  --text:#f0ece4;
+  --text2:#a09890;
+  --text3:#5a5650;
+  --r:14px;
+}
+
+/* SCREEN LAYOUT */
+.screen{display:none;flex:1;flex-direction:column;overflow:hidden;min-height:0}
+.screen.active{display:flex}
+
+/* ===== HOME SCREEN ===== */
+#s-home{align-items:center;justify-content:center;padding:24px;gap:20px}
+.home-logo{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(28px,7vw,42px);
+  color:var(--text);
+  text-align:center;
+  line-height:1.2;
+}
+.home-logo em{color:var(--accent2);font-style:italic}
+.home-card{
+  width:100%;
+  max-width:380px;
+  background:var(--card);
+  border:1px solid var(--border2);
+  border-radius:20px;
+  padding:28px 24px;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.load-btn{
+  width:100%;
+  padding:16px;
+  border-radius:var(--r);
+  border:none;
+  background:var(--accent);
+  color:#0e0e0e;
+  font-family:'DM Sans',sans-serif;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  letter-spacing:.02em;
+  transition:background .15s,transform .1s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.load-btn:active{transform:scale(.97)}
+.load-btn:hover{background:var(--accent2)}
+.load-btn.secondary{background:transparent;border:1px solid var(--border2);color:var(--text2);font-weight:500}
+.load-btn.secondary:hover{border-color:var(--accent);color:var(--accent)}
+.stat-row{display:flex;gap:10px}
+.stat-box{flex:1;background:var(--card2);border-radius:var(--r);padding:14px;text-align:center}
+.stat-n{font-family:'DM Serif Display',serif;font-size:32px;color:var(--accent2);line-height:1}
+.stat-n.red{color:var(--danger)}
+.stat-lbl{font-size:11px;color:var(--text3);font-weight:500;margin-top:4px;text-transform:uppercase;letter-spacing:.06em}
+
+/* betöltés jelző */
+#loading-msg{
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+  color:var(--text3);font-size:15px;
+}
+.spinner{
+  width:36px;height:36px;border-radius:50%;
+  border:3px solid var(--border2);
+  border-top-color:var(--accent);
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+#error-msg{
+  display:none;
+  background:var(--danger-dim);border:1px solid rgba(224,85,85,.25);
+  border-radius:var(--r);padding:18px;
+  font-size:13px;color:var(--danger);
+  text-align:center;line-height:1.6;
+  max-width:380px;width:100%;
+}
+
+/* ===== STUDY SCREEN ===== */
+#s-study{padding:0}
+
+.study-header{
+  padding:16px 20px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-shrink:0;
+}
+.study-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--text)}
+.study-counts{display:flex;gap:14px;align-items:center}
+.cnt{font-size:13px;font-weight:600;display:flex;align-items:center;gap:5px}
+.cnt-dot{width:6px;height:6px;border-radius:50%}
+
+.prog-track{height:2px;background:var(--border);flex-shrink:0;margin:0 20px}
+.prog-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .4s ease}
+
+.card-area{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  padding:16px 20px;
+  min-height:0;
+  gap:14px;
+}
+
+.hint-tap{font-size:12px;color:var(--text3);text-align:center;flex-shrink:0}
+
+/* FLIP CARD */
+.flip-wrap{
+  flex:1;
+  min-height:0;
+  position:relative;
+  perspective:1000px;
+}
+.flip-card{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform .45s cubic-bezier(.4,0,.2,1);
+  cursor:pointer;
+  will-change:transform;
+}
+.flip-card.flipped{transform:rotateY(180deg)}
+.face{
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:24px 22px;
+  overflow:hidden;
+  gap:12px;
+}
+.face-front{background:var(--card);border:1px solid var(--border2)}
+.face-back{background:#1e1a10;border:1px solid rgba(200,168,75,.25);transform:rotateY(180deg)}
+.face-tag{
+  position:absolute;top:16px;left:50%;transform:translateX(-50%);
+  font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text3);white-space:nowrap;
+}
+.face-back .face-tag{color:rgba(200,168,75,.45)}
+.face-q{
+  font-size:clamp(14px,4vw,18px);
+  font-weight:500;
+  line-height:1.65;
+  text-align:center;
+  color:var(--text);
+  max-height:calc(100% - 80px);
+  overflow-y:auto;
+  width:100%;
+}
+.face-a{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(18px,5vw,28px);
+  font-style:italic;
+  color:var(--accent2);
+  text-align:center;
+  line-height:1.4;
+  width:100%;
+  word-break:break-word;
+  max-height:calc(100% - 80px);
+  overflow-y:auto;
+}
+
+/* swipe overlays */
+.sov{
+  position:absolute;inset:0;border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Serif Display',serif;
+  font-size:22px;font-style:italic;
+  pointer-events:none;z-index:10;
+  transition:opacity .08s;opacity:0;
+}
+.sov-y{background:var(--green-dim);color:var(--green);border:1.5px solid rgba(82,179,110,.4)}
+.sov-n{background:var(--danger-dim);color:var(--danger);border:1.5px solid rgba(224,85,85,.4)}
+
+/* img */
+.card-imgs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.img-thumb{border-radius:8px;overflow:hidden;background:var(--card3);cursor:pointer;max-width:100px;transition:transform .15s}
+.img-thumb:active{transform:scale(.95)}
+.img-thumb img{width:100%;height:auto;max-height:90px;object-fit:contain;display:block}
+
+/* ACTION BUTTONS */
+.act-row{display:flex;gap:10px;flex-shrink:0}
+.act-btn{
+  flex:1;padding:15px 10px;
+  border-radius:var(--r);border:1px solid var(--border2);
+  background:var(--card2);
+  font-family:'DM Sans',sans-serif;
+  font-size:14px;font-weight:600;
+  cursor:pointer;transition:all .15s;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  color:var(--text2);
+}
+.act-btn:active{transform:scale(.95)}
+.act-btn.skip{border-color:rgba(224,85,85,.3);color:var(--danger)}
+.act-btn.skip:hover{background:var(--danger-dim)}
+.act-btn.know{border-color:rgba(82,179,110,.35);color:var(--green)}
+.act-btn.know:hover{background:var(--green-dim)}
+
+/* ===== DONE CARD ===== */
+.done-card{
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:20px;
+  flex:1;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:14px;padding:32px;
+  text-align:center;
+}
+.done-icon{font-size:52px;line-height:1}
+.done-title{font-family:'DM Serif Display',serif;font-size:26px;font-style:italic;color:var(--text)}
+.done-sub{font-size:14px;color:var(--text3)}
+.restart-btn{
+  margin-top:8px;padding:13px 28px;
+  border-radius:var(--r);border:none;
+  background:var(--accent);color:#0e0e0e;
+  font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;
+  cursor:pointer;transition:background .15s,transform .1s;
+}
+.restart-btn:active{transform:scale(.97)}
+.restart-btn:hover{background:var(--accent2)}
+
+/* ===== LIST SCREEN ===== */
+#s-list{padding:0}
+.list-header{padding:16px 20px 12px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.list-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--text)}
+.list-badge{
+  background:var(--accent-dim);color:var(--accent2);border:1px solid rgba(200,168,75,.2);
+  padding:4px 12px;border-radius:50px;font-size:12px;font-weight:600;
+}
+.srch-wrap{padding:0 20px 12px;flex-shrink:0}
+.srch{
+  display:flex;align-items:center;gap:10px;
+  background:var(--card);border:1px solid var(--border2);
+  border-radius:var(--r);padding:11px 14px;
+}
+.srch svg{flex-shrink:0;color:var(--text3)}
+.srch input{flex:1;border:none;outline:none;background:none;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--text)}
+.srch input::placeholder{color:var(--text3)}
+.list-scroll{flex:1;overflow-y:auto;padding:0 20px 20px;min-height:0}
+.list-scroll::-webkit-scrollbar{display:none}
+.l-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:14px 16px;
+  margin-bottom:8px;cursor:pointer;transition:border-color .15s,background .15s;
+}
+.l-item:hover{border-color:var(--border2);background:var(--card2)}
+.l-q{font-size:14px;font-weight:500;line-height:1.55;color:var(--text)}
+.l-ans{
+  font-family:'DM Serif Display',serif;font-size:16px;font-style:italic;
+  color:var(--accent2);
+  margin-top:10px;padding-top:10px;
+  border-top:1px solid var(--border);
+  display:none;
+}
+.l-ans.show{display:block}
+.l-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.chip{
+  padding:2px 8px;border-radius:50px;
+  font-size:10px;font-weight:600;
+  background:var(--card3);color:var(--text3);
+}
+.chip.g{background:var(--green-dim);color:var(--green)}
+.chip.r{background:var(--danger-dim);color:var(--danger)}
+
+/* ===== NAV ===== */
+nav{
+  flex-shrink:0;
+  display:flex;
+  background:var(--card);
+  border-top:1px solid var(--border);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.ni{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  gap:4px;padding:10px 4px 8px;
+  cursor:pointer;color:var(--text3);
+  transition:color .2s;font-size:10px;font-weight:600;letter-spacing:.04em;
+}
+.ni.active{color:var(--accent2)}
+.ni svg{width:22px;height:22px;stroke-width:1.8}
+
+/* LIGHTBOX */
+.lb{
+  position:fixed;inset:0;background:rgba(0,0,0,.9);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;z-index:999;
+  opacity:0;pointer-events:none;transition:opacity .2s;
+}
+.lb.on{opacity:1;pointer-events:all}
+.lb img{max-width:100%;max-height:calc(100vh - 60px);border-radius:12px;background:#fff;padding:4px}
+.lb-x{
+  position:absolute;top:14px;right:14px;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:#fff;border:none;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;top:16px;left:50%;
+  transform:translateX(-50%) translateY(-70px);
+  background:var(--card2);color:var(--text);border:1px solid var(--border2);
+  border-radius:50px;padding:11px 20px;
+  font-size:13px;font-weight:500;
+  z-index:998;transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+  white-space:nowrap;
+}
+.toast.on{transform:translateX(-50%) translateY(0)}
+.toast.ok{background:var(--accent);color:#0e0e0e;border-color:transparent}
+.toast.err{background:var(--danger);color:#fff;border-color:transparent}
+
+.face-q::-webkit-scrollbar,.face-a::-webkit-scrollbar{display:none}
+
+@media(min-width:560px){
+  #s-home,#s-study,#s-list{max-width:480px;margin:0 auto;width:100%}
+  body{align-items:center}
+  body>*{width:100%;max-width:480px}
+  nav{max-width:480px;width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLB()">
+  <button class="lb-x" onclick="closeLB()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <img id="lb-img" src="" alt="">
+</div>
+<div class="toast" id="toast"></div>
+
+<!-- ======= HOME ======= -->
+<div id="s-home" class="screen active">
+
+  <div id="loading-msg">
+    <div class="spinner"></div>
+    <div>Kártyák betöltése…</div>
+  </div>
+
+  <div id="error-msg">
+    ⚠ Nem sikerült betölteni a kártyákat.<br>
+    <small>Bizonyosodj meg róla, hogy a <code>data.js</code> fájl ugyanabban a mappában van mint az <code>index.html</code>, és futtasd a <code>generate_data.py</code> scriptet.</small>
+  </div>
+
+  <div id="home-content" style="display:none;flex-direction:column;align-items:center;gap:20px;width:100%;max-width:380px">
+    <div class="home-logo">Tanuló<br><em>kártyák</em></div>
+    <div class="home-card">
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-n" id="cq">0</div>
+          <div class="stat-lbl">Kérdés</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-n" id="cknown">0</div>
+          <div class="stat-lbl">Tudom</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-n" id="clearn">0</div>
+          <div class="stat-lbl">Tanulom</div>
+        </div>
+      </div>
+      <button class="load-btn" onclick="go('study')">Tanulás indítása →</button>
+      <button class="load-btn secondary" onclick="go('list')">Összes kártya megtekintése</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======= STUDY ======= -->
+<div id="s-study" class="screen">
+  <div class="study-header">
+    <div class="study-title">Kártyák</div>
+    <div class="study-counts">
+      <div class="cnt"><div class="cnt-dot" style="background:var(--accent)"></div><span id="sknown">0</span></div>
+      <div class="cnt"><div class="cnt-dot" style="background:var(--danger)"></div><span id="sskip">0</span></div>
+      <div class="cnt" style="color:var(--text3)"><span id="srem">0</span> van</div>
+    </div>
+  </div>
+  <div class="prog-track"><div class="prog-fill" id="sprg" style="width:0%"></div></div>
+
+  <div class="card-area">
+    <div class="hint-tap">Kattints a kártyára a válaszért</div>
+    <div class="flip-wrap" id="flip-wrap">
+      <div class="flip-card" id="flip-card" onclick="flipCard()">
+        <div class="face face-front">
+          <div class="sov sov-y" id="ov-y">Tudom ✓</div>
+          <div class="sov sov-n" id="ov-n">✗ Nem</div>
+          <div class="face-tag">kérdés</div>
+          <div class="face-q" id="fc-q" onclick="e=>e.stopPropagation()"></div>
+          <div id="fc-imgs"></div>
+        </div>
+        <div class="face face-back">
+          <div class="face-tag">válasz</div>
+          <div class="face-a" id="fc-a"></div>
+          <div id="fc-aimg"></div>
+        </div>
+      </div>
+    </div>
+    <div class="act-row">
+      <button class="act-btn skip" onclick="doSkipBtn()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Nem tudom
+      </button>
+      <button class="act-btn know" onclick="doKnowBtn()">
+        Tudom
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ======= LIST ======= -->
+<div id="s-list" class="screen">
+  <div class="list-header">
+    <div class="list-title">Összes kártya</div>
+    <span class="list-badge" id="lcnt">0</span>
+  </div>
+  <div class="srch-wrap">
+    <div class="srch">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="search" placeholder="Keresés…" oninput="renderList()">
+    </div>
+  </div>
+  <div class="list-scroll" id="lout"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="ni active" id="ni-home" onclick="go('home')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Kezdőlap
+  </div>
+  <div class="ni" id="ni-study" onclick="go('study')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    Tanulás
+  </div>
+  <div class="ni" id="ni-list" onclick="go('list')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+    Lista
+  </div>
+</nav>
+
+<script>
+let db=[], pool=[], knownSet=new Set();
+let currentItem=null, mcH=null, isFlipped=false;
+let swKnown=0, swSkip=0;
+
+// ===== AUTO INIT =====
+window.addEventListener('DOMContentLoaded', () => {
+  if (typeof window.CARDS !== 'undefined' && Array.isArray(window.CARDS) && window.CARDS.length > 0) {
+    db = window.CARDS;
+    pool = [...db];
+    document.getElementById('loading-msg').style.display = 'none';
+    document.getElementById('home-content').style.display = 'flex';
+    updateHomeStats();
+  } else {
+    document.getElementById('loading-msg').style.display = 'none';
+    document.getElementById('error-msg').style.display = 'block';
+  }
+});
+
+function updateHomeStats() {
+  document.getElementById('cq').innerText = db.length;
+  document.getElementById('cknown').innerText = knownSet.size;
+  document.getElementById('clearn').innerText = db.length - knownSet.size;
+}
+
+// NAV
+function go(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  document.getElementById('s-'+id).classList.add('active');
+  document.getElementById('ni-'+id).classList.add('active');
+  if(id==='study') initStudy();
+  if(id==='list') renderList();
+}
+
+// TOAST
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.className='toast'+(type?' '+type:'');
+  t.innerText=msg;t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),2600);
+}
+
+// LIGHTBOX
+function openLB(src){document.getElementById('lb-img').src=src;document.getElementById('lb').classList.add('on')}
+function closeLB(){document.getElementById('lb').classList.remove('on')}
+
+// IMAGES — most már base64 URL-ek jönnek közvetlenül
+function imgHTML(list){
+  if(!list||!list.length) return '';
+  const items=list.map(url=>{
+    if(!url) return '';
+    return `<div class="img-thumb" onclick="openLB('${url}');event.stopPropagation()"><img src="${url}" loading="lazy"></div>`;
+  }).filter(Boolean).join('');
+  return items?`<div class="card-imgs">${items}</div>`:'';
+}
+
+// STUDY
+function initStudy(){
+  if(!db.length){showDone(true);return}
+  pool=db.filter(x=>!knownSet.has(x.q));
+  if(!pool.length){showDone(false);return}
+  swKnown=knownSet.size; swSkip=0;
+  updateMeta();
+  loadCard();
+}
+
+function updateMeta(){
+  document.getElementById('sknown').innerText=swKnown;
+  document.getElementById('sskip').innerText=swSkip;
+  document.getElementById('srem').innerText=pool.length;
+  const done=db.length-pool.length;
+  document.getElementById('sprg').style.width=db.length?(done/db.length*100)+'%':'0%';
+}
+
+function loadCard(){
+  if(!pool.length){showDone(false);return}
+  currentItem=pool[0];
+  isFlipped=false;
+  const card=document.getElementById('flip-card');
+  card.style.transition='none';
+  card.style.transform='';
+  card.style.opacity='1';
+  card.classList.remove('flipped');
+
+  document.getElementById('fc-q').innerText=currentItem.q;
+  document.getElementById('fc-imgs').innerHTML=imgHTML(currentItem.imgs);
+
+  const aUrl=currentItem.aImg;
+  if(aUrl){
+    document.getElementById('fc-a').innerHTML='';
+    document.getElementById('fc-aimg').innerHTML=`<div class="card-imgs"><div class="img-thumb" onclick="openLB('${aUrl}');event.stopPropagation()"><img src="${aUrl}"></div></div>`;
+  } else {
+    document.getElementById('fc-a').innerText=currentItem.a;
+    document.getElementById('fc-aimg').innerHTML='';
+  }
+
+  document.getElementById('ov-y').style.opacity='0';
+  document.getElementById('ov-n').style.opacity='0';
+  setupSwipe();
+}
+
+function setupSwipe(){
+  if(mcH){mcH.destroy();mcH=null}
+  const scene=document.getElementById('flip-wrap');
+  const card=document.getElementById('flip-card');
+  mcH=new Hammer(scene);
+  mcH.get('pan').set({threshold:10,direction:Hammer.DIRECTION_HORIZONTAL});
+  let dragging=false;
+
+  mcH.on('panstart',()=>{dragging=true});
+  mcH.on('pan',ev=>{
+    if(!dragging) return;
+    card.style.transition='none';
+    const rot=ev.deltaX/28;
+    const flip=isFlipped?' rotateY(180deg)':'';
+    card.style.transform=`translateX(${ev.deltaX}px) rotate(${rot}deg)${flip}`;
+    document.getElementById('ov-y').style.opacity=ev.deltaX>60?Math.min(1,(ev.deltaX-60)/80):0;
+    document.getElementById('ov-n').style.opacity=ev.deltaX<-60?Math.min(1,(-ev.deltaX-60)/80):0;
+  });
+  mcH.on('panend',ev=>{
+    dragging=false;
+    document.getElementById('ov-y').style.opacity='0';
+    document.getElementById('ov-n').style.opacity='0';
+    if(ev.deltaX>110) slideOut('r',doKnow);
+    else if(ev.deltaX<-110) slideOut('l',doSkip);
+    else{
+      card.style.transition='transform .35s cubic-bezier(.34,1.56,.64,1)';
+      card.style.transform=isFlipped?'rotateY(180deg)':'';
+    }
+  });
+}
+
+function flipCard(){
+  if(!currentItem) return;
+  const card=document.getElementById('flip-card');
+  isFlipped=!isFlipped;
+  card.style.transition='transform .45s cubic-bezier(.4,0,.2,1)';
+  card.style.transform=isFlipped?'rotateY(180deg)':'';
+}
+
+function slideOut(dir,cb){
+  const card=document.getElementById('flip-card');
+  card.style.transition='transform .28s ease,opacity .28s ease';
+  card.style.transform=`translateX(${dir==='r'?1100:-1100}px) rotate(${dir==='r'?18:-18}deg)`;
+  card.style.opacity='0';
+  setTimeout(()=>cb(),260);
+}
+
+function doKnow(){
+  if(!pool.length) return;
+  const item=pool.shift();
+  knownSet.add(item.q);
+  item.hit=(item.hit||0)+1;
+  swKnown++;
+  updateMeta();
+  updateHomeStats();
+  loadCard();
+}
+function doSkip(){
+  if(!pool.length) return;
+  pool[0].miss=(pool[0].miss||0)+1;
+  swSkip++;
+  pool.push(pool.shift());
+  updateMeta();
+  loadCard();
+}
+function doKnowBtn(){if(currentItem) slideOut('r',doKnow)}
+function doSkipBtn(){if(currentItem) slideOut('l',doSkip)}
+
+function showDone(noCards){
+  currentItem=null;
+  if(mcH){mcH.destroy();mcH=null}
+  const area=document.querySelector('#s-study .card-area');
+  area.innerHTML=`<div class="done-card">
+    <div class="done-icon">${noCards?'📂':'🎉'}</div>
+    <div class="done-title">${noCards?'Nincsenek kártyák':'Kész vagy!'}</div>
+    <div class="done-sub">${noCards?'Nincs betöltött adat.':'Minden kártyát megtanultál'}</div>
+    ${!noCards?`<button class="restart-btn" onclick="resetStudy()">Újrakezd</button>`:''}
+  </div>`;
+}
+
+function resetStudy(){
+  knownSet.clear();
+  pool=[...db];
+  db.forEach(x=>{x.hit=0;x.miss=0});
+  swKnown=0;swSkip=0;
+  updateHomeStats();
+  document.querySelector('#s-study .card-area').innerHTML=`
+    <div class="hint-tap">Kattints a kártyára a válaszért</div>
+    <div class="flip-wrap" id="flip-wrap">
+      <div class="flip-card" id="flip-card" onclick="flipCard()">
+        <div class="face face-front">
+          <div class="sov sov-y" id="ov-y">Tudom ✓</div>
+          <div class="sov sov-n" id="ov-n">✗ Nem</div>
+          <div class="face-tag">kérdés</div>
+          <div class="face-q" id="fc-q"></div>
+          <div id="fc-imgs"></div>
+        </div>
+        <div class="face face-back">
+          <div class="face-tag">válasz</div>
+          <div class="face-a" id="fc-a"></div>
+          <div id="fc-aimg"></div>
+        </div>
+      </div>
+    </div>
+    <div class="act-row">
+      <button class="act-btn skip" onclick="doSkipBtn()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        Nem tudom
+      </button>
+      <button class="act-btn know" onclick="doKnowBtn()">
+        Tudom
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+    </div>`;
+  initStudy();
+}
+
+// LIST
+function renderList(){
+  const q=(document.getElementById('search').value||'').toLowerCase();
+  const f=db.filter(x=>x.q.toLowerCase().includes(q)||x.a.toLowerCase().includes(q));
+  document.getElementById('lcnt').innerText=f.length+' kártya';
+  document.getElementById('lout').innerHTML=f.length?f.map(x=>`
+    <div class="l-item" onclick="this.querySelector('.l-ans').classList.toggle('show')">
+      <div class="l-q">${esc(x.q)}</div>
+      ${x.imgs&&x.imgs.length?imgHTML(x.imgs):''}
+      <div class="l-chips">
+        ${knownSet.has(x.q)?'<span class="chip g">✓ Tudom</span>':''}
+        ${(x.miss||0)>1?`<span class="chip r">${x.miss}× téveszt</span>`:''}
+        ${(x.hit||0)>0?`<span class="chip">${x.hit}× helyes</span>`:''}
+      </div>
+      <div class="l-ans">${x.aImg?`<div class="card-imgs"><div class="img-thumb" onclick="openLB('${x.aImg}');event.stopPropagation()"><img src="${x.aImg}"></div></div>`:esc(x.a)}</div>
+    </div>`).join(''):`<div style="text-align:center;padding:48px 0;color:var(--text3)"><div style="font-size:36px;margin-bottom:12px">🔍</div><div style="font-family:'DM Serif Display',serif;font-size:18px;font-style:italic">Nincs találat</div></div>`;
+}
+
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+// KEYBOARD
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('s-study').classList.contains('active')) return;
+  if(e.key===' '){e.preventDefault();flipCard()}
+  else if(e.key==='ArrowRight') doKnowBtn();
+  else if(e.key==='ArrowLeft') doSkipBtn();
+});
+</script>
+</body>
+</html>
